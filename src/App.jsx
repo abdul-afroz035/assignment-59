@@ -18,7 +18,7 @@ function App() {
       const newCart = {...cart, [productId] : oldCount + Count}
       setCart(newCart); //obj me prdctId ke value ke agnst value store kr rhe [] ki use se
       const cartString = JSON.stringify(newCart);
-      localStorage.setItem("myCart", cartString);
+      localStorage.setItem("my-Cart", cartString);
     }
 
     const totalCount = +Object.keys(cart).reduce(function (previous, current) {
