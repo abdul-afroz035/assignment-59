@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useMemo , useCallback} from 'react';
 import { Link } from "react-router";
 import { useParams } from 'react-router';
 import { getProductData } from './api';
@@ -26,14 +27,14 @@ function Productdetails({onAddToCart}) {
         setCount(1)
     }, [id]);
 
-    function HandleCountChange(event) {
+    const HandleCountChange = useCallback(function(event) {
         const newNum = +event.target.value;  // value ko int (+) krna complsry h 
         setCount(newNum)
-    }
+     }, []);
 
-    function HandleAddToCart(){
+    const HandleAddToCart = useCallback(function (){
         onAddToCart(id, count)
-    }
+    }, [id,count]);
 
     if (Loadings) {
         return <Loading /> ;
@@ -47,7 +48,7 @@ function Productdetails({onAddToCart}) {
         <div class=" max-w-6xl mx-auto">
 
             <Link to="/" className=" flex items-center my-4">
-                <FaArrowLeft /> Back
+                <FaArrowLeft /> HomePage
             </Link>
 
             <div className="bg-white lg:flex lg:gap-6 space-y-4 my-4 p-6">
