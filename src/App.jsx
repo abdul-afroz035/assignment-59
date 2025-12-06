@@ -5,6 +5,7 @@ import Productdetails from './Productdetails'
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import NotFound from "./NotFound";
+import LoginPage from "./LoginPage";
 
 function App() {
   const saveCartItem = localStorage.getItem("my-Cart") || "{}";
@@ -32,7 +33,7 @@ function App() {
             <Navbar productCount={totalCount} />
             <div className="grow px-4">
                 <Routes>
-                    <Route index element={<Productlistpage />} />
+                    <Route index element={<LoginPage />} />
                     <Route path="/Products/:id" element={<Productdetails onAddToCart={HandleAddToCart} />} />
                     <Route path="/Productlistpage" element={<Productlistpage />} />
                     <Route path="*" element={<NotFound/>} /> 
