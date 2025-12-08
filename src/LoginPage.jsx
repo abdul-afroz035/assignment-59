@@ -100,7 +100,7 @@ function LoginPage() {
                     </button>
                 </div>
                     
-                <div className="self-center text-sm mt-2 text-gray-400 "> don't have an account?
+                <div className="place-self-center-safe text-sm mt-2 text-gray-400 "> don't have an account?
                    <Link to="/signupPage" className="text-primary-default"> Signup </Link>
                 </div>
             </div>
