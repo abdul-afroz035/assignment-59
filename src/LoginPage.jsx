@@ -2,6 +2,7 @@ import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Link } from "react-router";
+import { CiShoppingCart } from "react-icons/ci";
 
 function LoginPage() {
     function callLoginApi(values) {
@@ -31,10 +32,12 @@ function LoginPage() {
     });
     return (
         <div className=" flex flex-col h-full justify-center items-center bg-white max-w-6xl mx-auto my-16 py-6 px-6" >
-
-            <div className="flex flex-col justify-between w-80 px-6 py-2 rounded-md shadow-md bg-white space-y-5 ">
+            <div className="text-9xl text-gray-900 pb-4">
+                <CiShoppingCart />
+            </div>
+            <div className="flex flex-col justify-between w-90 px-6 py-2 rounded-md shadow-md bg-white space-y-5 ">
                 <div className="text-2xl mb-8 text-primary-default font-serif font-bold">
-                    Welcome to amazon
+                    DOWN-TOWN CityCart
                 </div>
                 <div>
                     <label htmlFor="myUsername" className="sr-only ">
@@ -84,6 +87,11 @@ function LoginPage() {
                     )}
                 </div>
 
+                <div className="self-end text-xs text-primary-light ">
+                    <Link to="/ForgotPassPage"> Forgot Password? 
+                    </Link>
+                </div>
+
                 <div className="self-center space-x-2">
                     <button
                         type="button"
@@ -100,7 +108,7 @@ function LoginPage() {
                     </button>
                 </div>
                     
-                <div className="place-self-center-safe text-sm mt-2 text-gray-400 "> don't have an account?
+                <div className="self-center text-sm mt-2 text-gray-400 "> don't have an account?
                    <Link to="/signupPage" className="text-primary-default"> Signup </Link>
                 </div>
             </div>
