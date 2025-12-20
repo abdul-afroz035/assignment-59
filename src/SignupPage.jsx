@@ -1,194 +1,144 @@
 import React from "react";
-import { useFormik } from "formik";
+import { withFormik } from "formik";
+import Input from "./Input";
 import * as Yup from "yup";
 import { Link } from "react-router";
 import { CiShoppingCart } from "react-icons/ci";
-function SignupPage() {
-    function callSignupApi(values) {
-        console.log("signupPage upi calling");
-    }
 
-    const schema = Yup.object().shape({
-        fullName: Yup.string(),
-        myEmail: Yup.string().email(),
-        userName: Yup.string(),
-        myPassword: Yup.string().min(8).max(12),
-        confermPass: Yup.string().min(8).max(12),
-    });
+function callSignupApi(values) {
+    console.log("signupPage upi calling");
+}
+const schema = Yup.object().shape({
+    fullName: Yup.string().required(),
+    myEmail: Yup.string().email().required(),
+    userName: Yup.string().required(),
+    myPassword: Yup.string().min(8).max(12).required(),
+    confermPass: Yup.string().min(8).max(12).required(),
+});
 
-    const { handleSubmit,
-        values,
-        handleChange,
-        handleBlur,
-        resetForm,
-        errors,
-        touched,
-        isValid,
-        dirty,
-    } = useFormik({
-        initialValues: {
-            fullName: "",
-            myEmail: "",
-            userName: "",
-            myPassword: "",
-            confermPass: "",
-        },
-        onSubmit: callSignupApi,
-        validationSchema: schema,
-    });
+const initialValues = {
+    fullName: "",
+    myEmail: "",
+    userName: "",
+    myPassword: "",
+    confermPass: "",
+};
+
+export function SignupPage({ handleSubmit, errors, touched, values, handleChange, handleBlur }) {
 
     return (
         <div className=" flex flex-col h-full justify-center items-center bg-white max-w-6xl mx-auto my-16 py-6 px-6" >
             <div className="text-9xl text-gray-900 pb-4">
                 <CiShoppingCart />
             </div>
-            <div className="flex flex-col justify-between w-90 px-6 py-2 rounded-md shadow-md bg-white space-y-5 ">
+
+            <form onSubmit={handleSubmit} className="flex flex-col justify-between w-90 px-6 py-2 rounded-md shadow-md bg-white space-y-3 ">
                 <div className="text-2xl mb-8 text-primary-default font-serif font-bold">
                     DOWN-TOWN CityCart
                 </div>
+                <Input
+                    values={values.fullName}
+                    error={errors.fullName}
+                    touched={touched.fullName}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    label="enter fullName"
+                    id="Full-Name"
+                    name="fullName"
+                    type="text"
+                    required
+                    autoComplete="user-FullName"
+                    placeholder="FullName"
+                />
 
-                <div>
-                    <label htmlFor="myFullName" className="sr-only ">
-                        user FullName
-                    </label>
-                    <input
-                        value={values.fullName}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        type="text"
-                        id="myFullName"
-                        name="fullName"
-                        required
-                        autoComplete="fullName"
-                        className="relative block w-full appearance-none rounded-none
-                            rounded-t-md px-3 py-2 border border-gray-400 text-gray-900
-                            placeholder-gray-500 focus:z-10 focus:border-indigo-500
-                            focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                        placeholder="Enter fullName"
-                    />
-                    {touched.fullName && errors.fullName && (
-                        <div className="text-red-700">{errors.fullName}</div>
-                    )}
-                </div>
+                <Input
+                    values={values.myEmail}
+                    error={errors.myEmail}
+                    touched={touched.myEmail}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    label="enter email"
+                    id="user-email"
+                    name="myEmail"
+                    type="email"
+                    required
+                    autoComplete="email-address"
+                    placeholder="Email"
+                />
 
-                <div>
-                    <label htmlFor="Email-Address" className="sr-only ">
-                        user email
-                    </label>
-                    <input
-                        value={values.myEmail}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        type="email"
-                        id="Email-Address"
-                        name="myEmail"
-                        required
-                        autoComplete="myEmail"
-                        className="relative block w-full appearance-none rounded-none
-                            rounded-t-md px-3 py-2 border border-gray-400 text-gray-900
-                            placeholder-gray-500 focus:z-10 focus:border-indigo-500
-                            focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                        placeholder="Enter Email Address"
-                    />
-                    {touched.myEmail && errors.myEmail && (
-                        <div className="text-red-700">{errors.myEmail}</div>
-                    )}
-                </div>
+                <Input
+                    values={values.userName}
+                    error={errors.userName}
+                    touched={touched.userName}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    label="enter username "
+                    id="userName"
+                    name="userName"
+                    type="text"
+                    required
+                    autoComplete="userName"
+                    placeholder="username or email"
+                />
 
-                <div>
-                    <label htmlFor="myUsername" className="sr-only ">
-                        user name
-                    </label>
-                    <input
-                        value={values.username}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        type="text"
-                        id="myUsername"
-                        name="username"
-                        required
-                        autoComplete="username"
-                        className="relative block w-full appearance-none rounded-none
-                            rounded-t-md px-3 py-2 border border-gray-400 text-gray-900
-                            placeholder-gray-500 focus:z-10 focus:border-indigo-500
-                            focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                        placeholder="Username"
-                    />
-                    {touched.username && errors.username && (
-                        <div className="text-red-700">{errors.username}</div>
-                    )}
-                </div>
+                <Input
+                    values={values.myPassword}
+                    error={errors.myPassword}
+                    touched={touched.myPassword}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    label="enter Password"
+                    id="user-password"
+                    name="myPassword"
+                    type="password"
+                    required
+                    autoComplete="my-Password"
+                    placeholder="enter Password"
+                />
 
-                <div>
-                    <label htmlFor="password" className="sr-only ">
-                        password
-                    </label>
-                    <input
-                        value={values.myPassword}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        type="password"
-                        id="password"
-                        name="myPassword"
-                        required
-                        autoComplete="myPassword"
-                        className="relative block w-full appearance-none rounded-none
-                            rounded-t-md px-3 py-2 border border-gray-400 text-gray-900
-                            placeholder-gray-500 focus:z-10 focus:border-indigo-500
-                            focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                        placeholder="enter the password"
-                    />
-                    {touched.myPassword && errors.myPassword && (
-                        <div className="text-red-700">{errors.myPassword}</div>
-                    )}
-                </div>
-
-                <div>
-                    <label htmlFor="cnfm-password" className="sr-only ">
-                        password
-                    </label>
-                    <input
-                        value={values.confermPass}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        type="password"
-                        id="cnfm-pass"
-                        name="confermPass"
-                        required
-                        autoComplete="confermPass"
-                        className="relative block w-full appearance-none rounded-none
-                            rounded-t-md px-3 py-2 border border-gray-400 text-gray-900
-                            placeholder-gray-500 focus:z-10 focus:border-indigo-500
-                            focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                        placeholder="enter conferm password"
-                    />
-                    {touched.confermPass && errors.confermPass && (
-                        <div className="text-red-700">{errors.confermPass}</div>
-                    )}
-                </div>
+                <Input
+                    values={values.confermPass}
+                    error={errors.confermPass}
+                    touched={touched.confermPass}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    label="conferm Password"
+                    id="cnfm-password"
+                    name="confermPass"
+                    type="password"
+                    required
+                    autoComplete="conferm-Password"
+                    placeholder="conferm Password"
+                />
 
                 <div className="self-center space-x-2">
                     <button
                         type="button"
-                        onClick={resetForm}
                         className="text-white bg-primary-default hover:bg-primary-dark px-2 py-0.5 rounded-sm self-end">
                         Reset
                     </button>
                     <button
                         type="submit"
-                        onClick={handleSubmit}
-                        disabled={!isValid || !dirty}
                         className="text-white bg-primary-default hover:bg-primary-dark disabled:bg-primary-light px-2 py-0.5 rounded-sm ">
                         Signup
                     </button>
                 </div>
 
-                <div className="place-self-center-safe text-sm mt-2 text-gray-400 ">
-                    Already have an account?
+                <div className="self-center text-sm mt-2 text-gray-400 "> Already have an account?
                     <Link to="/" className="text-primary-default"> Login </Link>
                 </div>
-            </div>
+            </form>
         </div>
     );
+
+
 }
-export default SignupPage;
+
+const myHOC = withFormik({
+    validationSchema: schema,
+    initialValues: initialValues,
+    handleSubmit: callSignupApi
+});
+const easySignup = myHOC(SignupPage);
+
+export default easySignup;
