@@ -8,6 +8,7 @@ import NotFound from "./NotFound";
 import LoginPage from "./LoginPage";
 import SignupPage from "./SignupPage";
 import ForgotPassPage from "./ForgotPassPage";
+import CartPage from "./CartPage";
 
 function App() {
   const saveCartItem = localStorage.getItem("my-Cart") || "{}";
@@ -19,10 +20,16 @@ function App() {
       const oldCount = cart[productId] || 0;  //agar cart ke andr current prId hoga to uska count store krega 
       
       const newCart = {...cart, [productId] : oldCount + Count}
-      setCart(newCart); //obj me prdctId ke value ke agnst value store kr rhe [] ki use se
-      const cartString = JSON.stringify(newCart);
-      localStorage.setItem("my-Cart", cartString);
+      updateCart(newCart);
     }
+       
+
+      function updateCart(newCart){
+        setCart(newCart);
+        const cartString = JSON.stringify(newCart);
+      localStorage.setItem("my-Cart", cartString);
+      }
+      
 
     const totalCount = +Object.keys(cart).reduce(function (previous, current) {
       return +previous + cart[current];
@@ -30,12 +37,15 @@ function App() {
     //  or add ho jyega or pre me jata rhega or jab sab obj trace ho jyega then totcount me final additin ayga
 
     const path = window.location.pathname;
+
+    //<CartPage cart = {cart} updateCart = {setCart} />
     return (
         <div className=" bg-gray-light h-screen overflow-scroll flex flex-col">
             <Navbar productCount={totalCount} />
             <div className="grow px-4">
                 <Routes>
-                    <Route index element={<LoginPage />} />
+                    <Route index element={<Productlistpage/>} />
+                    <Route path="/CartPage" element={<CartPage cart = {cart} updateCart = {updateCart} />} />
                     <Route path="/SignupPage" element={<SignupPage />} />
                     <Route path="/ForgotPassPage" element={<ForgotPassPage />} />
                     <Route path="/Products/:id" element={<Productdetails onAddToCart={HandleAddToCart} />} />

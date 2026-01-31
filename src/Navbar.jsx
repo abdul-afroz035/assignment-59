@@ -1,5 +1,6 @@
 import React from 'react';
 import { CiShoppingCart } from "react-icons/ci";
+import { Link } from 'react-router';
 
 
 function Navbar({productCount}) {
@@ -7,10 +8,11 @@ function Navbar({productCount}) {
     <div class=" bg-white py-3 px-16  w-full">
       <div class="flex justify-between items-center max-w-6xl mx-auto">
         <img class="h-16 object-cover" src="https://upload.wikimedia.org/wikipedia/commons/0/06/Amazon_2024.svg" alt="amazon-logo"/>
-        <div className="flex flex-col items-center"> 
+        <Link className="flex flex-col items-center" to="/CartPage"> 
+  
           <CiShoppingCart class="text-5xl text-primary-default"/>
           <span className="-m-9 text-primary-default">{productCount}</span>
-        </div>
+        </Link>
       </div>
      
       
