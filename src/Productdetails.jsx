@@ -6,6 +6,7 @@ import { getProductData } from './api';
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Loading from './Loading';
 import NotFound from './NotFound';
+import Button from './Button';
 
 function Productdetails({onAddToCart}) {
     const id = +(useParams().id);
@@ -70,10 +71,11 @@ function Productdetails({onAddToCart}) {
                         onChange = {HandleCountChange}>
                         </input>
 
-                        <button class=" text-sm py-1 px-3 ml-1 border bg-primary-default hover:bg-primary-dark text-white rounded-lg" 
-                        onClick={HandleAddToCart}>
+                        <Button onClick={HandleAddToCart}>
                             ADD TO CART
-                        </button>
+                        </Button>
+
+                        
 
                     </div>
                 </div>

@@ -69,9 +69,9 @@ function Productlistpage() {
     }
 
     return (
-      <div>
+      
 
-        <div className=" bg-white max-w-6xl mx-auto my-16 py-6 px-6">
+        <div className=" bg-white max-w-6xl mx-auto my-16 py-6 px-6 ">
           <div class="flex justify-end my-4">
             <input value={query}
               class="border border-gray-400 px-2 mr-2 rounded-sm"
@@ -98,7 +98,7 @@ function Productlistpage() {
           <button class="text-[10px] text-primary-default bg-white border-2 border-primary-default py-1 px-2 mt-8 mr-1"> 2 </button>
           <button class="text-[10px] text-primary-default bg-white border-2 border-primary-default py-1 px-1 mt-8 mr-1"> --- </button>
         </div>
-      </div>
+     
 
     );
   }
