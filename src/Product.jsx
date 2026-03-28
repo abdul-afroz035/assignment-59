@@ -31,8 +31,9 @@ function Product({ thumbnail, category, title, price, id }) { //destructuring
 
       <div class="text-gray-700 text-sm font-bold"> Rs.{price}</div>
 
-      <Link className="text-gray-700 text-sm font-extrabold" to={"/Products/" + id} >
-        view details</Link>
+      <Link className="text-gray-700 text-sm font-extrabold inline-block" to={"/Products/" + id} >
+        <img className='h-15 object-cover' src="https://cdn.vectorstock.com/i/500p/20/67/modern-speech-bubble-more-info-vector-41712067.jpg"/>
+      </Link>
     </div>
   );
 }

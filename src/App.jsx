@@ -22,7 +22,6 @@ function App() {
       const newCart = {...cart, [productId] : oldCount + Count}
       updateCart(newCart);
     }
-       
 
       function updateCart(newCart){
         setCart(newCart);
@@ -40,9 +39,9 @@ function App() {
 
     //<CartPage cart = {cart} updateCart = {setCart} />
     return (
-        <div className=" bg-gray-light h-screen overflow-scroll flex flex-col">
+        <div className="  h-screen overflow-scroll flex flex-col">
             <Navbar productCount={totalCount} />
-            <div className="grow px-4">
+            <div className="grow px-4 bg-gray-light">
                 <Routes>
                     <Route index element={<Productlistpage/>} />
                     <Route path="/CartPage" element={<CartPage cart = {cart} updateCart = {updateCart} />} />
