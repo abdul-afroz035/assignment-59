@@ -1,13 +1,19 @@
 import React from "react";
+import { memo } from "react";
 
-function Button(props) {
+function Button({ className, ...rest}) {
     return (
         <button
-            {...props}
-            className=" text-sm py-1 px-3 ml-1 border bg-primary-default hover:bg-primary-dark text-white rounded-lg "
+            {...rest}
+            className={ 
+                " text-sm py-1 px-3 ml-1 border bg-primary-default hover:bg-primary-dark text-white rounded-lg "
+                +
+                className
+            }
+
 
         ></button>
     );
 }
 
-export default Button; 
+export default memo(Button); 
